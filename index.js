@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const dob = document.getElementById('dob').value;
         const acceptedTerms = document.getElementById('terms').checked;
 
+        // Validate email
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
         // Validate age
         if (!isAgeValid(dob)) {
             alert("You must be between 18 and 55 years old.");
@@ -33,6 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
         addUserToTable(user);
         form.reset(); // Clear form fields
     });
+    
+    function validateEmail(email) {
+        // Regular expression for basic email validation
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    }
 
     function isAgeValid(dob) {
         const today = new Date();
